@@ -2,7 +2,7 @@
 $id = 0;
 
 $gid = $_GET['id'];
-$gid = preg_replace('/[^0-9_]/i', '', $gid);
+//$gid = preg_replace('/[^0-9a-z:\/_]/i', '', $gid);
 
 if($gid)
 	$id = $gid;
@@ -16,7 +16,7 @@ else:
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 	curl_setopt($ch, CURLOPT_POST, FALSE);
-	curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/'.$id.'/likes?limit=10000&offset=0');
+	curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/?id='.$id);
 
 	//make the request
 	$result = curl_exec($ch);
