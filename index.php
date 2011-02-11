@@ -35,17 +35,11 @@
 			}
 			
 			if(_id){
-				var holdInt = setInterval(updateCounter, 5000);
+				var holdInt = setInterval(updateCounter, 10000);
 			} 
 			else if(holdInt != undefined) {
 				clearInterval(holdInt);
 			}
-			
-			$("form").submit(function(){
-				_id = $("#id").val();
-				updateCounter();
-				return false;
-			});
 		});
 	</script>
 	<link rel="stylesheet" href="master.css" type="text/css" media="screen" title="no title" charset="utf-8">
