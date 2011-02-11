@@ -272,13 +272,18 @@ form {
 **/
 #counter-layout {
 	display: block;
-	margin: 200px auto 50px auto;
-	width: 300px;
+	margin: 120px auto 0 auto;
+	min-height: 300px;
+	text-align: center;
 }
 
-	#counter {
-		text-align: center;
-		font-size: 300px;
+	#counter-container {
+		padding: 140px 0 50px 0;
 	}
+
+		#counter {
+			text-align: center;
+			font-size: 300px;
+		}
 	
 	

@@ -53,7 +53,9 @@
 			</form>
 			
 			<div id="counter-layout">
-				<div id="counter">0</div>
+				<div id="counter-container">
+					<span id="counter">0</span>
+				</div>
 			</div>
 		</div>
 	</div>
