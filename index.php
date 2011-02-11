@@ -34,7 +34,12 @@
 				});
 			}
 			
-			var holdInt = setInterval(updateCounter, 5000);
+			if(_id){
+				var holdInt = setInterval(updateCounter, 5000);
+			} 
+			else if(holdInt != undefined) {
+				clearInterval(holdInt);
+			}
 			
 			$("form").submit(function(){
 				_id = $("#id").val();

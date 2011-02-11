@@ -252,18 +252,19 @@ body {
 **/
 
 form {
-	width: 300px;
+	width: 940px;
 	margin: 0 auto;
 	padding: 10px 20px;
 	background: #627AAD;
 }
 
 	form input {
-		width: 290px;
+		width: 930px;
 		margin: 0;
-		padding: 2px 5px;
-		font-size: 16px;
+		padding: 5px 10px;
+		font-size: 22px;
 		color: #555;
+		text-align: center;
 	}
 	
 /**
@@ -277,7 +278,7 @@ form {
 
 	#counter {
 		text-align: center;
-		font-size: 200px;
+		font-size: 300px;
 	}
 	
 	
