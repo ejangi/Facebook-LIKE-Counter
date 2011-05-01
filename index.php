@@ -2,7 +2,8 @@
 /**
  *	Facebook Counter
  *
- *	This script is a self-contained Facebook "LIKE" counter. It is intended to be a wallboard on an LCD screen or the like.
+ *	This script is a self-contained Facebook "LIKE" counter. 
+ *  It is intended to be a wallboard on an LCD screen or the like.
  *
  *	@author James Angus - ejangi.com
  *	@license The MIT License - http://www.opensource.org/licenses/mit-license.php
@@ -13,6 +14,52 @@ $proxy = (int) @$_GET['proxy'];
 
 // Feeble attempt at cleansing the URL... :P
 $gid = strip_tags(@$_GET['id']);
+
+
+
+function ask_social_graph($id)
+{
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($ch, CURLOPT_POST, FALSE);
+	curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/?id='.$id);
+
+	//make the request
+	$result = curl_exec($ch);
+	curl_close($ch);
+	return $result;
+}
+
+
+
+function get_like_count($id)
+{
+	$count = 0;
+	$id2 = '';
+	
+	if(preg_match('/^https?:\/\/www\..*/i', $id))
+	{
+		$id2 = preg_replace('/^(https?:\/\/)www\./i', '$1', $id);
+	}
+	else
+	{
+		$id2 = preg_replace('/^(https?:\/\/)/i', '$1www.', $id);
+	}
+	
+	$result = json_decode(ask_social_graph($id));
+	$count = (int)$result->shares;
+
+	$result2 = json_decode(ask_social_graph($id2));
+	$count = ($count + (int)$result2->shares);
+	
+	$obj = new stdClass;
+	$obj->id = $id;
+	$obj->shares = $count;
+
+	return json_encode($obj);
+}
+
+
 
 if($proxy == 1):
 	if($gid):
@@ -28,14 +75,7 @@ if($proxy == 1):
 		}';
 		exit;
 	else:
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_POST, FALSE);
-		curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/?id='.$id);
-
-		//make the request
-		$result = curl_exec($ch);
-		echo $result;
+		echo get_like_count($id);
 		exit;
 	endif;
 endif;
