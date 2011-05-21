@@ -5,6 +5,7 @@
  *	This script is a self-contained Facebook "LIKE" counter. 
  *  It is intended to be a wallboard on an LCD screen or the like.
  *
+ *  @copyright James Angus 2011.
  *	@author James Angus - ejangi.com
  *	@license The MIT License - http://www.opensource.org/licenses/mit-license.php
  */
